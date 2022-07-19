@@ -38,5 +38,4 @@ streamlit.header("The fruit load list contains :")
 streamlit.dataframe(my_data_rows)
 
 add_my_fruit = streamlit.selectbox("What fruit would you like to add?", list(my_fruit_list.index))
-added_fruit = add_my_fruit.loc[add_my_fruit]
-streamlit.text("Thanks for adding " + str(added_fruit))
+streamlit.text("Thanks for adding " + str(add_my_fruit))
