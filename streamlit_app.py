@@ -33,11 +33,6 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
 
-if streamlit.button('Get fruit load list'):
-    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-    my_data_rows = get_fruit_load_list
-    streamlit.dataframe(my_data_rows)
-
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
@@ -48,8 +43,14 @@ try:
 except URLError as e:
   streamlit.error()
 
-streamlit.stop()
+streamlit.header("The fruit load list contains:")
+if streamlit.button('Get fruit load list'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_data_rows = get_fruit_load_list
+    streamlit.dataframe(my_data_rows)
 
+
+streamlit.stop()
 
 
 add_my_fruit = streamlit.selectbox("What fruit would you like to add?", list(my_fruit_list.index))
